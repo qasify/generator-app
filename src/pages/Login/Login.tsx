@@ -94,7 +94,7 @@ const UserRegistration: React.FC = () => {
                 isLoading={isLoading}
                 disabled={isLoading}
               >
-                Enviar
+                Login
               </Button>
             </div>
           </form>

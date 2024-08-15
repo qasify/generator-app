@@ -3,20 +3,48 @@ interface UserToken {
   userId: string;
 }
 
-interface GeneratorResponse {
-  generators:
-    {
-      id: string
-      name: string
-      status: string
-      totalInstalledPower: string
-    }[]
+interface GetGeneratorResponse {
+  generators: {
+    id: string;
+    name: string;
+    status: string;
+    totalInstalledPower: string;
+  }[];
+}
+
+interface NewGenerator extends UserToken {
+  name: string;
+  code: string;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface AddGeneratorResponse {
+  status: string;
+  token: string;
+  userId: string;
 }
 
 export const getGenerators = async (
   user: UserToken
-): Promise<GeneratorResponse | null | undefined> => {
+): Promise<GetGeneratorResponse | null | undefined> => {
   try {
+    return GeneratorsData;
+  } catch (error) {
+    console.error("Error:", error);
+    return;
+  }
+};
+
+export const AddGenerator = async (
+  newGenerator: NewGenerator
+): Promise<GetGeneratorResponse | null | undefined> => {
+  try {
+    GeneratorsData.generators.push({
+      id: `generator_${GeneratorsData.generators.length+1}`,
+      name: newGenerator.name,
+      status: "Running/No Load",
+      totalInstalledPower: `${Math.floor(Math.random() * 1000)} kW`,
+    });
     return GeneratorsData;
   } catch (error) {
     console.error("Error:", error);
