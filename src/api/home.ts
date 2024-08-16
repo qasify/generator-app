@@ -1,3 +1,5 @@
+import { GeneratorStatus } from "../types/Generator";
+
 interface UserToken {
   token: string;
   userId: string;
@@ -7,7 +9,7 @@ interface GetGeneratorResponse {
   generators: {
     id: string;
     name: string;
-    status: string;
+    status: GeneratorStatus;
     totalInstalledPower: string;
   }[];
 }
@@ -19,7 +21,7 @@ interface NewGenerator extends UserToken {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface AddGeneratorResponse {
-  status: string;
+  status: GeneratorStatus;
   token: string;
   userId: string;
 }
@@ -35,7 +37,7 @@ export const getGenerators = async (
   }
 };
 
-export const AddGenerator = async (
+export const addGenerator = async (
   newGenerator: NewGenerator
 ): Promise<GetGeneratorResponse | null | undefined> => {
   try {
@@ -52,7 +54,7 @@ export const AddGenerator = async (
   }
 };
 
-const GeneratorsData = {
+export const GeneratorsData:GetGeneratorResponse = {
   generators: [
     {
       id: "generator_001",

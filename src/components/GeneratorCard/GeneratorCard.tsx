@@ -1,7 +1,9 @@
 import React from 'react'
 import { GeneratorCardProps } from './GeneratorCard.types'
+import { useNavigate } from 'react-router-dom';
 
 const GeneratorCard: React.FC<GeneratorCardProps> = ({ data }) => {
+    const navigate = useNavigate();
 
     const getColor = (status: string) => {
         switch (status) {
@@ -18,8 +20,12 @@ const GeneratorCard: React.FC<GeneratorCardProps> = ({ data }) => {
         }
     }
 
+    const handleClick = () => {
+        navigate('/generator/generator_001')
+    }
+
     return (
-        <div className='flex flex-row w-full md:w-96 h-20 shadow rounded-md py-3 px-6 items-center gap-6 cursor-pointer shrink-0 bg-white'>
+        <div className='flex flex-row w-full md:w-96 h-20 shadow rounded-md py-3 px-6 items-center gap-6 cursor-pointer shrink-0 bg-white' onClick={handleClick}>
             <div className={`${getColor(data.status)} w-4 h-4 rounded-full shadow shrink-0 blur-[1px]`} />
             <div className='flex flex-col w-full h-full'>
                 <div className='flex flex-row justify-between'>

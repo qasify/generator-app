@@ -34,6 +34,7 @@ module.exports = {
       text: {
         light: "#444444",
         dark: "#CECECE",
+        active: '#8241F3',
       },
 
       // Gray

@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 import InstallPromptPopup from "./components/InstallPromptPopup/InstallPromptPopup";
+import Generator from "./pages/Generator";
 
 const App: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoute />}>
+          <Route path="/generator/:generatorId" element={<Generator />} />
           <Route path="/home" element={<Home />} />
         </Route>
         <Route path="*" element={<Navigate to="/login" replace />} />
